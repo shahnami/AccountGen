@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package accountgen;
+package accountgen.model;
 
 import java.text.DateFormatSymbols;
 import java.util.Date;
@@ -321,6 +321,10 @@ public class Person {
 
     public void setGeoco(String _geoco) {
         this._geoco = _geoco;
+    }
+    
+    public String toExportString(){
+        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear());
     }
     
     @Override

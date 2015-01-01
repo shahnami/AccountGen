@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 
-package accountgen;
+package accountgen.controller;
 
+import accountgen.model.Address;
+import accountgen.model.Consts;
+import accountgen.model.Person;
+import accountgen.model.Reader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,14 +60,16 @@ public class Controller {
     
     public void generate(int amount, boolean export) throws FileNotFoundException, UnsupportedEncodingException{
         accounts = new ArrayList<>();
-        PrintWriter writer = new PrintWriter("accounts.txt", "UTF-8");
+        PrintWriter writer = new PrintWriter(Consts.PATH_URL, "UTF-8");
         for(int i=0;i<amount;i++){
             accounts.add(createAccount());
             System.out.println(i+1 + "/"+amount+" accounts created");
         }
         if(export){
+            writer.println("firstname:lastname:phone:email:streetname:streetnumber:state:postcode:birthday:birthmonth:birthyear");
+            writer.println("====================================================================================================");
             for(Person account:accounts){
-                writer.println(account.toString());
+                writer.println(account.toExportString());
             }
             writer.close();
         } else {
@@ -141,6 +147,11 @@ public class Controller {
     
     public Controller(){
         //
+    }
+    
+    public void readFile(String path){
+        Reader reader = new Reader(path);
+        reader.printFile();
     }
     
     

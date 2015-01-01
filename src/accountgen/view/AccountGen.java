@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package accountgen;
+package accountgen.view;
 
+import accountgen.controller.Controller;
+import accountgen.model.Consts;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
@@ -21,8 +23,8 @@ public class AccountGen {
      * @throws java.io.UnsupportedEncodingException
      */
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        // TODO code application logic here
-        Controller.getInstance().generate(100, true);
+        Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT);
+        Controller.getInstance().readFile(Consts.PATH_URL);
     }
     
 }
