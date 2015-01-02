@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,26 +55,27 @@ public class Controller {
         return doc;
     }
     
-    public void export(){
-    
-    }
-    
-    public void generate(int amount, boolean export) throws FileNotFoundException, UnsupportedEncodingException{
+    public void generate(int amount, boolean export_to_file, boolean export_to_db) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, SQLException{
         accounts = new ArrayList<>();
         PrintWriter writer = new PrintWriter(Consts.PATH_URL, "UTF-8");
         for(int i=0;i<amount;i++){
             accounts.add(createAccount());
             System.out.println(i+1 + "/"+amount+" accounts created");
         }
-        if(export){
+        if(export_to_file){
             writer.println("firstname:lastname:phone:email:streetname:streetnumber:state:postcode:birthday:birthmonth:birthyear");
             writer.println("====================================================================================================");
             for(Person account:accounts){
                 writer.println(account.toExportString());
             }
             writer.close();
-        } else {
-            showAccounts();
+        }
+        if(export_to_db){
+            Database.getInstance().openConnection();
+            for(Person account:accounts){
+                Database.getInstance().insertAccount(account);
+            }
+            Database.getInstance().closeConnection();
         }
     }
     
@@ -88,6 +90,10 @@ public class Controller {
     private void setEmail(Document doc, Person p){
         Element em = doc.select(".email").first();
         p.setEmail(em.text().split(" ")[0]);
+    }
+    
+    private void setInbox(Person p){
+        p.setInbox("http://www.fakemailgenerator.com/#/"+p.getEmail().split("@")[1]+"/"+p.getEmail().split("@")[0]+"/");
     }
     
     private void setAddress(Document doc, Person p){
@@ -135,6 +141,7 @@ public class Controller {
         setAddress(doc, p);
         setPhone(doc, p);
         setEmail(doc, p);
+        setInbox(p);
         setBday(doc, p);
         return p;
     }
@@ -152,6 +159,15 @@ public class Controller {
     public void readFile(String path){
         Reader reader = new Reader(path);
         reader.printFile();
+    }
+    
+    public void readFromDB(int id) throws SQLException, ClassNotFoundException{
+        Reader reader = new Reader("");
+        reader.readFromDB(id);
+    }
+    
+    public void getDBSize() throws ClassNotFoundException, SQLException{
+        System.out.println(Database.getInstance().getDBSize());
     }
     
     

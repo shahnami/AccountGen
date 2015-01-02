@@ -10,6 +10,7 @@ import accountgen.controller.Controller;
 import accountgen.model.Consts;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,9 +23,11 @@ public class AccountGen {
      * @throws java.io.FileNotFoundException
      * @throws java.io.UnsupportedEncodingException
      */
-    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-        Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT);
-        Controller.getInstance().readFile(Consts.PATH_URL);
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, SQLException {
+        Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT_TO_FILE, Consts.EXPORT_TO_DB);
+        //Controller.getInstance().readFile(Consts.PATH_URL);
+        //Controller.getInstance().readFromDB(1);
+        //Controller.getInstance().getDBSize();
     }
     
 }

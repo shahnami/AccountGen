@@ -6,9 +6,13 @@
 
 package accountgen.model;
 
+import accountgen.controller.Database;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,8 +20,24 @@ import java.io.IOException;
  */
 public class Reader {
     private String _filepath;
+    private List<Person> _accounts;
+    private Person _account;
+    
+    
     public Reader(String filepath){
         this._filepath = filepath;
+        this._accounts = new ArrayList<>();
+    }
+    
+    public void readFromDB(int id) throws SQLException, ClassNotFoundException{
+        if(id == -1){
+            _accounts = Database.getInstance().getAllAccounts();
+        } else {
+            _accounts.add(Database.getInstance().getPerson(id));
+        }
+        for(Person account:_accounts){
+            System.out.println(account.toString());
+        }
     }
     
     public void printFile(){

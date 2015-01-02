@@ -26,7 +26,7 @@ public class Person {
     private String _mmn;
     private Date _birthday;
     private String _mastercard;
-    private Date _expires;
+    private Date _expires = new Date();
     private String _cvc2;
     private String _ssn; //optional
     private String _favoritecolor;
@@ -329,7 +329,7 @@ public class Person {
     
     @Override
     public String toString(){
-        return String.format("name: %s %s\nphone: %s\nemail: %s\naddress: %s %s %s %s\nbirthday: %s %s %s\n========================================", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear());
+        return String.format("name: %s %s\nphone: %s\nemail: %s\naddress: %s %s %s %s\nbirthday: %s %s %s\n========================================", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear()+1900);
     }
     
     private String monthName(int month){

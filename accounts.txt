@@ -1,0 +1,12 @@
+firstname:lastname:phone:email:streetname:streetnumber:state:postcode:birthday:birthmonth:birthyear
+====================================================================================================
+Carli:Lagerwaard:0499 70 28 08:CarliLagerwaard@teleworm.us:Linieweg:28:Langdorp:3201:6:July:1948
+Raven:Commandeur:0476 30 32 46:RavenCommandeur@jourrapide.com:Rue de Boneffe:23:Orchimont:5550:6:July:1980
+Jennyfer:Christiaans:0474 16 49 70:JennyferChristiaans@dayrep.com:Rue Jean Lorette:488:Thys:4367:1:November:1964
+Sharena:Weijters:0484 26 19 46:SharenaWeijters@teleworm.us:Drève des Bouleaux:412:Ere:7500:14:April:1947
+Dominicus:van Koot:0472 59 07 60:DominicusvanKoot@teleworm.us:Amerveldstraat:53:Houyet:5560:2:November:1991
+Djairo:Antonis:0480 14 45 77:DjairoAntonis@jourrapide.com:Industrieweg:467:Bouvignies:7803:21:April:1945
+Rewien:Aaldering:0478 46 81 31:RewienAaldering@dayrep.com:Ramselsesteenweg:95:Lillo:2040:13:March:1957
+Boy:Rink:0487 43 03 72:BoyRink@dayrep.com:Rue Grande:477:Aywaille:4920:6:April:1976
+Nisha:van Nierop:0474 88 54 45:NishavanNierop@rhyta.com:Industriestraat:188:Denderleeuw:9470:8:October:1946
+Annique:Lassche:0472 30 21 34:AnniqueLassche@jourrapide.com:Maskenstraat:351:Kermt:3510:27:September:1929

@@ -17,7 +17,8 @@ public final class Consts {
     public static final String NAMESET = "-nl";
     public static final String COUNTRY = "-bg";
     public static final int AMOUNT = 100;
-    public static final boolean EXPORT = true;
+    public static final boolean EXPORT_TO_FILE = true;
+    public static final boolean EXPORT_TO_DB = true;
     public static final String PATH_URL = "accounts.txt";
     
     private Consts(){
