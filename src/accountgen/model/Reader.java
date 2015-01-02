@@ -11,8 +11,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  *
@@ -30,6 +35,7 @@ public class Reader {
     }
     
     public void readFromDB(int id) throws SQLException, ClassNotFoundException{
+        _accounts = new ArrayList<>();
         if(id == -1){
             _accounts = Database.getInstance().getAllAccounts();
         } else {
@@ -38,6 +44,47 @@ public class Reader {
         for(Person account:_accounts){
             System.out.println(account.toString());
         }
+    }
+    
+    private int MonthToInt(String monthname) throws ParseException{
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new SimpleDateFormat("MMM").parse(monthname));
+        int monthInt = cal.get(Calendar.MONTH) + 1;
+        return monthInt;
+    }
+    
+    public List<Person> readPersonFromFile() throws ParseException{
+        _accounts = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(this._filepath))) {
+            String sCurrentLine;
+            br.readLine();
+            br.readLine();
+
+            while ((sCurrentLine = br.readLine()) != null) {
+                Person p = new Person();
+                Address a = new Address();
+                Date d = new Date();
+                d.setDate(Integer.parseInt(sCurrentLine.split(":")[8]));
+                d.setMonth(MonthToInt(sCurrentLine.split(":")[9]));
+                d.setYear(Integer.parseInt(sCurrentLine.split(":")[10]));
+                p.setFirstname(sCurrentLine.split(":")[0]);
+                p.setLastname(sCurrentLine.split(":")[1]);
+                p.setMiddlename("");
+                p.setPhone(sCurrentLine.split(":")[2]);
+                p.setEmail(sCurrentLine.split(":")[3]);
+                p.setBirthday(d);
+                a.setStreetname(sCurrentLine.split(":")[4]);
+                a.setStreetnumber(sCurrentLine.split(":")[5]);
+                a.setPostcode(sCurrentLine.split(":")[7]);
+                a.setState(sCurrentLine.split(":")[6]);
+                p.setAdress(a);
+                p.setInbox("http://www.fakemailgenerator.com/#/"+p.getEmail().split("@")[1]+"/"+p.getEmail().split("@")[0]+"/");
+                _accounts.add(p);
+            }
+        } catch (IOException e) {
+            //
+        }
+        return _accounts;
     }
     
     public void printFile(){

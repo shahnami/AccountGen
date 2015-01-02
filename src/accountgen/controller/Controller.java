@@ -36,7 +36,8 @@ import org.jsoup.select.Elements;
  */
 public class Controller {
     private static Controller instance = null;
-    public List<Person> accounts = null;
+    private List<Person> accounts = null;
+    private Reader reader = null;
     
     public static Controller getInstance(){
         if(instance == null){
@@ -77,6 +78,18 @@ public class Controller {
             }
             Database.getInstance().closeConnection();
         }
+    }
+    
+    public void exportToDB(String path) throws ParseException, ClassNotFoundException, SQLException{
+        accounts = new ArrayList<>();
+        reader = new Reader(path);
+        accounts = reader.readPersonFromFile();
+        Database.getInstance().openConnection();
+        for(Person account:accounts){
+            Database.getInstance().insertAccount(account);
+        }
+        Database.getInstance().closeConnection();
+        
     }
     
     private void setName(Document doc, Person p){
@@ -157,12 +170,12 @@ public class Controller {
     }
     
     public void readFile(String path){
-        Reader reader = new Reader(path);
+        reader = new Reader(path);
         reader.printFile();
     }
     
     public void readFromDB(int id) throws SQLException, ClassNotFoundException{
-        Reader reader = new Reader("");
+        reader = new Reader("");
         reader.readFromDB(id);
     }
     
