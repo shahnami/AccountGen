@@ -13,6 +13,7 @@ package accountgen.model;
 public final class Consts {
     public static final String GENERATOR_URL = "http://www.fakenamegenerator.com/gen"; //gen-random-nl-bg.php
     public static final String GENERATOR_URL_EXT = ".php";
+    public static final String INBOX_URL = "http://www.fakemailgenerator.com/#/";
     public static final String GENDER = "-random";
     public static final String NAMESET = "-nl";
     public static final String COUNTRY = "-bg";

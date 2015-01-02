@@ -324,7 +324,7 @@ public class Person {
     }
     
     public String toExportString(){
-        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear());
+        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear()+1900);
     }
     
     @Override

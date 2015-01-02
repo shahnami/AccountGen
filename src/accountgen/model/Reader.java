@@ -34,16 +34,14 @@ public class Reader {
         this._accounts = new ArrayList<>();
     }
     
-    public void readFromDB(int id) throws SQLException, ClassNotFoundException{
+    public List<Person> getPerson(int id) throws SQLException, ClassNotFoundException{
         _accounts = new ArrayList<>();
         if(id == -1){
             _accounts = Database.getInstance().getAllAccounts();
         } else {
             _accounts.add(Database.getInstance().getPerson(id));
         }
-        for(Person account:_accounts){
-            System.out.println(account.toString());
-        }
+        return _accounts;
     }
     
     private int MonthToInt(String monthname) throws ParseException{
@@ -53,7 +51,7 @@ public class Reader {
         return monthInt;
     }
     
-    public List<Person> readPersonFromFile() throws ParseException{
+    public List<Person> personFromFile() throws ParseException{
         _accounts = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(this._filepath))) {
             String sCurrentLine;
@@ -78,7 +76,7 @@ public class Reader {
                 a.setPostcode(sCurrentLine.split(":")[7]);
                 a.setState(sCurrentLine.split(":")[6]);
                 p.setAdress(a);
-                p.setInbox("http://www.fakemailgenerator.com/#/"+p.getEmail().split("@")[1]+"/"+p.getEmail().split("@")[0]+"/");
+                p.setInbox(Consts.INBOX_URL+p.getEmail().split("@")[1]+"/"+p.getEmail().split("@")[0]+"/");
                 _accounts.add(p);
             }
         } catch (IOException e) {

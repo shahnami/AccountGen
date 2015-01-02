@@ -83,13 +83,25 @@ public class Controller {
     public void exportToDB(String path) throws ParseException, ClassNotFoundException, SQLException{
         accounts = new ArrayList<>();
         reader = new Reader(path);
-        accounts = reader.readPersonFromFile();
+        accounts = reader.personFromFile();
         Database.getInstance().openConnection();
         for(Person account:accounts){
             Database.getInstance().insertAccount(account);
         }
         Database.getInstance().closeConnection();
-        
+    }
+    
+    public void exportToFile(String path) throws SQLException, ClassNotFoundException, FileNotFoundException, UnsupportedEncodingException{
+        accounts = new ArrayList<>();
+        reader = new Reader(path);
+        accounts = reader.getPerson(-1); //All accounts
+        PrintWriter writer = new PrintWriter(path, "UTF-8");
+        writer.println("firstname:lastname:phone:email:streetname:streetnumber:state:postcode:birthday:birthmonth:birthyear");
+        writer.println("====================================================================================================");
+        for(Person account:accounts){
+            writer.println(account.toExportString());
+        }
+        writer.close();
     }
     
     private void setName(Document doc, Person p){
@@ -174,9 +186,11 @@ public class Controller {
         reader.printFile();
     }
     
-    public void readFromDB(int id) throws SQLException, ClassNotFoundException{
+    public void printPerson(int id) throws SQLException, ClassNotFoundException{
+        accounts = new ArrayList<>();
         reader = new Reader("");
-        reader.readFromDB(id);
+        accounts = reader.getPerson(id);
+        showAccounts();
     }
     
     public void getDBSize() throws ClassNotFoundException, SQLException{
