@@ -15,16 +15,22 @@ public class Address {
     private String _postcode;
     private String _streetnumber;
     private String _state;
+    private String _country;
     
-    public Address(String streetname, String postcode, String streetnumber, String state){
+    public Address(String streetname, String postcode, String streetnumber, String state, String country){
         this._streetname = streetname;
         this._postcode = postcode;
         this._streetnumber = streetnumber;
         this._state = state;
+        this._country = country;
     }
     
     public Address(){
         //
+    }
+
+    public String getCountry() {
+        return _country;
     }
     
     public String getStreetname(){
@@ -43,6 +49,10 @@ public class Address {
         return this._state;
     }
 
+    public void setCountry(String _country) {
+        this._country = _country;
+    }
+    
     public void setStreetname(String _streetname) {
         this._streetname = _streetname;
     }

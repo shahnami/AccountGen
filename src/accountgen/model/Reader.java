@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 /**
  *
@@ -36,11 +35,7 @@ public class Reader {
     
     public List<Person> getPerson(int id) throws SQLException, ClassNotFoundException{
         _accounts = new ArrayList<>();
-        if(id == -1){
-            _accounts = Database.getInstance().getAllAccounts();
-        } else {
-            _accounts.add(Database.getInstance().getPerson(id));
-        }
+        _accounts.add(Database.getInstance().getPerson(id));
         return _accounts;
     }
     
@@ -57,26 +52,54 @@ public class Reader {
             String sCurrentLine;
             br.readLine();
             br.readLine();
-
             while ((sCurrentLine = br.readLine()) != null) {
                 Person p = new Person();
                 Address a = new Address();
+                Vehicle v = new Vehicle();
                 Date d = new Date();
-                d.setDate(Integer.parseInt(sCurrentLine.split(":")[8]));
-                d.setMonth(MonthToInt(sCurrentLine.split(":")[9]));
-                d.setYear(Integer.parseInt(sCurrentLine.split(":")[10]));
                 p.setFirstname(sCurrentLine.split(":")[0]);
-                p.setLastname(sCurrentLine.split(":")[1]);
-                p.setMiddlename("");
-                p.setPhone(sCurrentLine.split(":")[2]);
-                p.setEmail(sCurrentLine.split(":")[3]);
+                p.setMiddlename(sCurrentLine.split(":")[1]);
+                p.setLastname(sCurrentLine.split(":")[2]);
+                p.setGender(sCurrentLine.split(":")[3]);
+                p.setPhone(sCurrentLine.split(":")[4]);
+                p.setEmail(sCurrentLine.split(":")[5]);
+                p.setInbox(sCurrentLine.split(":")[6]);
+                d.setDate(Integer.parseInt(sCurrentLine.split(":")[7]));
+                d.setMonth(Integer.parseInt(sCurrentLine.split(":")[8]));
+                d.setYear(Integer.parseInt(sCurrentLine.split(":")[9]));
                 p.setBirthday(d);
-                a.setStreetname(sCurrentLine.split(":")[4]);
-                a.setStreetnumber(sCurrentLine.split(":")[5]);
-                a.setPostcode(sCurrentLine.split(":")[7]);
-                a.setState(sCurrentLine.split(":")[6]);
+                a.setPostcode(sCurrentLine.split(":")[10]);
+                a.setState(sCurrentLine.split(":")[11]);
+                a.setStreetname(sCurrentLine.split(":")[12]);
+                a.setStreetnumber(sCurrentLine.split(":")[13]);
+                a.setCountry(sCurrentLine.split(":")[14]);
+                p.setUsername(sCurrentLine.split(":")[15]);
+                p.setPassword(sCurrentLine.split(":")[16]);
+                p.setMmn(sCurrentLine.split(":")[17]);
+                p.setMastercard(sCurrentLine.split(":")[18]);
+                p.setCvv2(sCurrentLine.split(":")[19]);
+                d = new Date();
+                d.setDate(1);
+                d.setMonth(Integer.parseInt(sCurrentLine.split(":")[20]));
+                d.setYear(Integer.parseInt(sCurrentLine.split(":")[21]));
+                p.setExpires(d);
+                p.setSsn(sCurrentLine.split(":")[22]);
+                p.setFavoritecolor(sCurrentLine.split(":")[23]);
+                p.setOccupation(sCurrentLine.split(":")[24]);
+                p.setWebsite(sCurrentLine.split(":")[25]);
+                p.setCompany(sCurrentLine.split(":")[26]);
+                v.setBrand(sCurrentLine.split(":")[27]);
+                v.setModel(sCurrentLine.split(":")[28]);
+                v.setYear(Integer.parseInt(sCurrentLine.split(":")[29]));
+                p.setUpsnr(sCurrentLine.split(":")[30]);
+                p.setBloodtype(sCurrentLine.split(":")[31]);
+                p.setWeight(sCurrentLine.split(":")[32]);
+                p.setHeight(sCurrentLine.split(":")[33]);
+                p.setGuid(sCurrentLine.split(":")[34]);
+                p.setGEOX(sCurrentLine.split(":")[35]);
+                p.setGEOY(sCurrentLine.split(":")[36]);
                 p.setAdress(a);
-                p.setInbox(Consts.INBOX_URL+p.getEmail().split("@")[1]+"/"+p.getEmail().split("@")[0]+"/");
+                p.setVehicle(v);
                 _accounts.add(p);
             }
         } catch (IOException e) {

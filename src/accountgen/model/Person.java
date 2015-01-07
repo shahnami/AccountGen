@@ -16,6 +16,7 @@ import java.util.Date;
 public class Person {
     private String _firstname;
     private String _middlename; //optional
+    private String _gender;
     private String _lastname;
     private Address _address;
     private String _phone;
@@ -27,64 +28,30 @@ public class Person {
     private Date _birthday;
     private String _mastercard;
     private Date _expires = new Date();
-    private String _cvc2;
+    private String _cvv2;
     private String _ssn; //optional
     private String _favoritecolor;
     private String _occupation;
     private String _company;
     private String _website;
-    private String _vehicle;
+    private Vehicle _vehicle;
     private String _upsnr;
     private String _bloodtype;
     private String _weight;
     private String _height;
     private String _guid;
-    private String _geoco;
+    private String _geo_x;
+    private String _geo_y;
     
-    
-    //No middlename
-    public Person(String firstname, String lastname, Address address, String phone, String email, String inbox,
-                  String username, String password, String mmn, Date birthday, String mastercard, Date expires, String cvc2, String ssn,
-                  String favoritecolor, String occupation, String company, String website, String vehicle, String upsnr, String bloodtype,
-                  String weight, String height, String guid, String geoco){
-        
-        this(firstname, "", lastname, address, phone, email, inbox, username, password, mmn, birthday, mastercard, expires, cvc2, ssn,
-                favoritecolor, occupation, company, website, vehicle, upsnr, bloodtype, weight, height, guid, geoco);
-    
-    }
-    
-    //No ssn
-    public Person(String firstname, String middlename, String lastname, Address address, String phone, String email, String inbox,
-                  String username, String password, String mmn, Date birthday, String mastercard, Date expires, String cvc2,
-                  String favoritecolor, String occupation, String company, String website, String vehicle, String upsnr, String bloodtype,
-                  String weight, String height, String guid, String geoco){
-        
-        this(firstname, middlename, lastname, address, phone, email, inbox, username, password, mmn, birthday, mastercard, expires, cvc2, "",
-                favoritecolor, occupation, company, website, vehicle, upsnr, bloodtype, weight, height, guid, geoco);
-    
-    }
-    
-    //No middlename && no ssn
-    public Person(String firstname, String lastname, Address address, String phone, String email, String inbox,
-                  String username, String password, String mmn, Date birthday, String mastercard, Date expires, String cvc2,
-                  String favoritecolor, String occupation, String company, String website, String vehicle, String upsnr, String bloodtype,
-                  String weight, String height, String guid, String geoco){
-        
-        this(firstname, "", lastname, address, phone, email, inbox, username, password, mmn, birthday, mastercard, expires, cvc2, "",
-                favoritecolor, occupation, company, website, vehicle, upsnr, bloodtype, weight, height, guid, geoco);
-    
-    }
-    
-
-    
-    public Person(String firstname, String middlename, String lastname, Address address, String phone, String email, String inbox,
-                  String username, String password, String mmn, Date birthday, String mastercard, Date expires, String cvc2, String ssn,
-                  String favoritecolor, String occupation, String company, String website, String vehicle, String upsnr, String bloodtype,
-                  String weight, String height, String guid, String geoco){
+    public Person(String firstname, String middlename, String lastname, String gender, Address address, String phone, String email, String inbox,
+                  String username, String password, String mmn, Date birthday, String mastercard, Date expires, String cvv2, String ssn,
+                  String favoritecolor, String occupation, String company, String website, Vehicle vehicle, String upsnr, String bloodtype,
+                  String weight, String height, String guid, String geox, String geoy){
         
         this._firstname = firstname;
         this._middlename = middlename;
         this._lastname = lastname;
+        this._gender = gender;
         this._address = address;
         this._phone = phone;
         this._email = email;
@@ -95,7 +62,7 @@ public class Person {
         this._birthday = birthday;
         this._mastercard = mastercard;
         this._expires = expires;
-        this._cvc2 = cvc2;
+        this._cvv2 = cvv2;
         this._ssn = ssn;
         this._favoritecolor = favoritecolor;
         this._occupation = occupation;
@@ -107,7 +74,8 @@ public class Person {
         this._weight = weight;
         this._height = height;
         this._guid = guid;
-        this._geoco = geoco;
+        this._geo_x = geox;
+        this._geo_y = geoy;
     
     }
     
@@ -125,6 +93,10 @@ public class Person {
 
     public String getLastname() {
         return _lastname;
+    }
+
+    public String getGender() {
+        return _gender;
     }
 
     public Address getAdress() {
@@ -167,8 +139,8 @@ public class Person {
         return _expires;
     }
 
-    public String getCvc2() {
-        return _cvc2;
+    public String getCvv2() {
+        return _cvv2;
     }
 
     public String getSsn() {
@@ -191,7 +163,7 @@ public class Person {
         return _website;
     }
 
-    public String getVehicle() {
+    public Vehicle getVehicle() {
         return _vehicle;
     }
 
@@ -215,10 +187,14 @@ public class Person {
         return _guid;
     }
 
-    public String getGeoco() {
-        return _geoco;
+    public String getGEOX() {
+        return _geo_x;
     }
 
+    public String getGEOY() {
+        return _geo_y;
+    }
+    
     public void setFirstname(String _firstname) {
         this._firstname = _firstname;
     }
@@ -229,6 +205,10 @@ public class Person {
 
     public void setLastname(String _lastname) {
         this._lastname = _lastname;
+    }
+
+    public void setGender(String _gender) {
+        this._gender = _gender;
     }
 
     public void setAdress(Address _address) {
@@ -271,8 +251,8 @@ public class Person {
         this._expires = _expires;
     }
 
-    public void setCvc2(String _cvc2) {
-        this._cvc2 = _cvc2;
+    public void setCvv2(String _cvv2) {
+        this._cvv2 = _cvv2;
     }
 
     public void setSsn(String _ssn) {
@@ -295,7 +275,7 @@ public class Person {
         this._website = _website;
     }
 
-    public void setVehicle(String _vehicle) {
+    public void setVehicle(Vehicle _vehicle) {
         this._vehicle = _vehicle;
     }
 
@@ -319,12 +299,23 @@ public class Person {
         this._guid = _guid;
     }
 
-    public void setGeoco(String _geoco) {
-        this._geoco = _geoco;
+    public void setGEOX(String _geoco) {
+        this._geo_x = _geoco;
     }
     
+    public void setGEOY(String _geoco) {
+        this._geo_y = _geoco;
+    }
+    
+    
     public String toExportString(){
-        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", _firstname, _lastname, _phone, _email, _address.getStreetname(), _address.getStreetnumber(), _address.getState(), _address.getPostcode() , _birthday.getDate(), monthName(_birthday.getMonth()), _birthday.getYear()+1900);
+        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", 
+                            _firstname, _middlename, _lastname, _gender, _phone, _email, _inbox.replace("http://", ""), 
+                            _birthday.getDate(), _birthday.getMonth()+1, _birthday.getYear()+1900, 
+                            _address.getCountry(), _address.getStreetname(), _address.getStreetnumber(), _address.getPostcode(), _address.getState(), 
+                            _username, _password, _mmn, _mastercard, _cvv2, _expires.getMonth()+1, _expires.getYear()+1900, _ssn, _favoritecolor, _occupation, 
+                            _website, _company, _vehicle.getBrand(), _vehicle.getModel(), _vehicle.getYear(), _upsnr, _bloodtype, _weight, _height, _guid, _geo_x, _geo_y
+                );
     }
     
     @Override

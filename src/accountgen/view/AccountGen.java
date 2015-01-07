@@ -26,11 +26,13 @@ public class AccountGen {
      */
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, SQLException, ParseException {
         Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT_TO_FILE, Consts.EXPORT_TO_DB);
+        //Controller.getInstance().printPerson(1);
         //Controller.getInstance().readFile(Consts.PATH_URL);
-        //Controller.getInstance().exportToDB(Consts.PATH_URL);
-        //Controller.getInstance().printPerson(11385);
-        Controller.getInstance().getDBSize();
-        //Controller.getInstance().exportToFile(Consts.PATH_URL);
+        //Controller.getInstance().exportToDB(Consts.PATH_URL, true);
+        //System.out.println("================================");
+        //Controller.getInstance().printPerson(20000);
+        //Controller.getInstance().getDBSize();
+        //Controller.getInstance().exportToFile(Consts.PATH_URL, true);
         
     }
     
