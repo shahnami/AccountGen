@@ -30,7 +30,7 @@ public class AccountGen {
         //Controller.getInstance().readFile(Consts.PATH_URL);
         //Controller.getInstance().exportToDB(Consts.PATH_URL, true);
         //System.out.println("================================");
-        //Controller.getInstance().printPerson(20000);
+        //Controller.getInstance().printPerson(1);
         //Controller.getInstance().getDBSize();
         //Controller.getInstance().exportToFile(Consts.PATH_URL, true);
         

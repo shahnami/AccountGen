@@ -309,8 +309,8 @@ public class Person {
     
     
     public String toExportString(){
-        return String.format("%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s:%s", 
-                            _firstname, _middlename, _lastname, _gender, _phone, _email, _inbox.replace("http://", ""), 
+        return String.format("%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s", 
+                            _firstname, _middlename, _lastname, _gender, _phone, _email, _inbox, 
                             _birthday.getDate(), _birthday.getMonth()+1, _birthday.getYear()+1900, 
                             _address.getCountry(), _address.getStreetname(), _address.getStreetnumber(), _address.getPostcode(), _address.getState(), 
                             _username, _password, _mmn, _mastercard, _cvv2, _expires.getMonth()+1, _expires.getYear()+1900, _ssn, _favoritecolor, _occupation, 

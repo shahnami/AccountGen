@@ -91,9 +91,9 @@ public class Controller {
             accounts = reader.getPerson(-1); //All accounts
         }
         try (PrintWriter writer = new PrintWriter(path, "UTF-8")) {
-            writer.println("firstname:middlename:lastname:gender:phone:email:inbox:birthday:birthmonth:birthyear:country:streetname:streetnumber:postcode:state:"
-                    + "username:password:mmn:mastercard:cvv2:expiremonth:expireyear:ssn:favoritecolor:occupation:website:company:brand:model:year:upsnr:bloodtype:"
-                    + "weight:height:guid:geo_x:geo_y");
+            writer.println("firstname|middlename|lastname|gender|phone|email|inbox|birthday|birthmonth|birthyear|country|streetname|streetnumber|postcode|state|"
+                    + "username|password|mmn|mastercard|cvv2|expiremonth|expireyear|ssn|favoritecolor|occupation|website|company|brand|model|year|upsnr|bloodtype|"
+                    + "weight|height|guid|geo_x|geo_y");
             writer.println("");
             for(Person account:accounts){
                 writer.println(account.toExportString());

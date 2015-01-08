@@ -20,7 +20,7 @@ public final class Consts {
     public static final int GENDER = 50; //FEMALE 0|--x--|100 MALE
     public static final int MAX_AGE = 100;
     public static final int MIN_AGE = 18;
-    public static final int AMOUNT = 100;
+    public static final int AMOUNT = 10;
     public static final boolean EXPORT_TO_FILE = true;
     public static final boolean EXPORT_TO_DB = true;
     public static final String PATH_URL = "accounts.txt";

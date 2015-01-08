@@ -142,15 +142,62 @@ public class Database {
         //closeConnection();
     }
     
+    public List<Person> getAllPerson() throws ClassNotFoundException, SQLException{
+        openConnection();
+        List<Person> persons = new ArrayList<>();
+        PreparedStatement stmt = _connection.prepareStatement("SELECT * FROM person p JOIN address a ON a.idaddress = p.idaddress JOIN vehicle v ON v.idvehicle = p.idvehicle");
+        ResultSet rs = stmt.executeQuery();
+        while(rs.next()) {
+            Person p = new Person();   
+            p.setFirstname(rs.getString("firstname"));
+            p.setMiddlename(rs.getString("middlename"));
+            p.setLastname(rs.getString("lastname"));
+            p.setGender(rs.getString("gender"));
+            p.setPhone(rs.getString("phone"));
+            p.setEmail(rs.getString("email"));
+            p.setInbox(rs.getString("inbox"));
+            p.setBirthday(rs.getDate("birthday"));
+            Address ad = new Address();
+            ad.setPostcode(String.valueOf(rs.getInt("postcode")));
+            ad.setState(rs.getString("state"));
+            ad.setStreetname(rs.getString("streetname"));
+            ad.setStreetnumber(String.valueOf(rs.getInt("streetnumber")));
+            ad.setCountry(rs.getString("country"));
+            p.setAdress(ad);
+            p.setUsername(rs.getString("username"));
+            p.setPassword(rs.getString("password"));
+            p.setMmn(rs.getString("mmn"));
+            p.setMastercard(rs.getString("mastercard"));
+            p.setCvv2(rs.getString("cvv2"));
+            p.setExpires(rs.getDate("expires"));
+            p.setSsn(rs.getString("ssn"));
+            p.setFavoritecolor(rs.getString("favoritecolor"));
+            p.setOccupation(rs.getString("occupation"));
+            p.setWebsite(rs.getString("website"));
+            p.setCompany(rs.getString("company"));
+            Vehicle v = new Vehicle();
+            v.setBrand(rs.getString("brand"));
+            v.setModel(rs.getString("model"));
+            v.setYear(rs.getInt("year"));
+            p.setVehicle(v);
+            p.setUpsnr(rs.getString("upsnr"));
+            p.setBloodtype(rs.getString("bloodtype"));
+            p.setWeight(rs.getString("weight"));
+            p.setHeight(rs.getString("height"));
+            p.setGuid(rs.getString("guid"));
+            p.setGEOX(rs.getString("geo_x"));
+            p.setGEOY(rs.getString("geo_y"));
+            persons.add(p);
+        }
+        closeConnection();
+        return persons; 
+    }
+    
     public Person getPerson(int id) throws SQLException, ClassNotFoundException{
         openConnection();
         List<Person> persons = new ArrayList<>();
-        PreparedStatement stmt = null;
-        if(id == -1) {
-            stmt = _connection.prepareStatement("SELECT * FROM person p JOIN address a ON a.idaddress = p.idaddress JOIN vehicle v ON v.idvehicle = p.idvehicle WHERE idperson = ?");
-        } else {
-            stmt = _connection.prepareStatement("SELECT * FROM person p JOIN address a ON a.idaddress = p.idaddress JOIN vehicle v ON v.idvehicle = p.idvehicle");
-        }  
+        PreparedStatement stmt = _connection.prepareStatement("SELECT * FROM person p JOIN address a ON a.idaddress = p.idaddress JOIN vehicle v ON v.idvehicle = p.idvehicle WHERE idperson = ?");
+        stmt.setInt(1, id); 
         ResultSet rs = stmt.executeQuery();
         while(rs.next()) {
             Person p = new Person();   
