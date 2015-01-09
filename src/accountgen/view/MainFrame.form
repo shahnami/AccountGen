@@ -126,9 +126,11 @@
                                                   <Component id="lblMale" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="tglFile" min="-2" pref="163" max="-2" attributes="0"/>
+                                                  <Component id="tglFile" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                  <Component id="tglDB" min="-2" pref="164" max="-2" attributes="0"/>
+                                                  <Component id="btnClear" min="-2" pref="60" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="tglDB" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                                               <Component id="sliderGender" alignment="0" max="32767" attributes="0"/>
@@ -148,8 +150,6 @@
                                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                                   <Component id="spinnerAmount" min="-2" pref="100" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="btnClear" min="-2" pref="54" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -173,30 +173,29 @@
                                   <Component id="lblMaxAge" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="340" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane1" min="-2" pref="340" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="spinnerAmount" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="spinnerMaxAge" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="spinnerMinAge" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
+                                      <Component id="btnClear" min="-2" pref="49" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btnClear" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblFemale" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblMale" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="sliderGender" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="203" max="-2" attributes="0"/>
@@ -205,9 +204,9 @@
                                   <Component id="tglFile" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                                   <Component id="tglDB" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnGenerate" min="-2" pref="74" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="pgrBar" min="-2" max="-2" attributes="0"/>
