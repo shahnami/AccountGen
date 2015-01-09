@@ -11,6 +11,7 @@ import accountgen.model.Consts;
 import accountgen.model.Person;
 import accountgen.model.Reader;
 import accountgen.model.Vehicle;
+import accountgen.view.MainFrame;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -25,6 +26,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JProgressBar;
+import javax.swing.SwingWorker;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -57,11 +60,68 @@ public class Controller {
         return doc;
     }
     
+    private class MySwingWorker extends SwingWorker<String, Double>{
+        private final JProgressBar fProgressBar;
+        private final int _amount;
+        private final boolean _export_to_file;
+        private final boolean _export_to_db;
+        private MySwingWorker(int amount, boolean export_to_file, boolean export_to_db, JProgressBar aProgressBar) {
+          fProgressBar = aProgressBar;
+          _amount = amount;
+          _export_to_file = export_to_file;
+          _export_to_db = export_to_db;
+          accounts = new ArrayList<>();
+          fProgressBar.setStringPainted(true);
+        }
+
+        @Override
+        protected String doInBackground() throws Exception {
+            for(int i=0;i<_amount;i++){
+                accounts.add(createAccount());
+                double factor = ((double)(i+1) / _amount);
+                double bias = ((double)(1.0/_amount));
+                publish( factor + bias);//publish the progress
+            }
+            return "Finished";
+        }
+        @Override
+        protected void process( List<Double> aDoubles ) {
+          //update the percentage of the progress bar that is done
+          int amount = fProgressBar.getMaximum() - fProgressBar.getMinimum();
+          fProgressBar.setValue( ( int ) (fProgressBar.getMinimum() + ( amount * aDoubles.get( aDoubles.size() - 1 ))) );
+          fProgressBar.setString((int)(fProgressBar.getMinimum() + ( amount * aDoubles.get( aDoubles.size() - 1 )))+"%");
+        }
+
+        @Override
+        protected void done() {
+            publish(0.0);
+            fProgressBar.setStringPainted(false);
+            if(_export_to_file){
+                try {
+                    exportToFile(Consts.PATH_URL, false);
+                } catch (SQLException | ClassNotFoundException | FileNotFoundException | UnsupportedEncodingException ex) {
+                    //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if(_export_to_db){
+                try {
+                    exportToDB(Consts.PATH_URL, false);
+                } catch (ParseException | ClassNotFoundException | SQLException ex) {
+                    //Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+    
+    
     public void generate(int amount, boolean export_to_file, boolean export_to_db) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, SQLException, ParseException{
+        MySwingWorker mySwingWorker = new MySwingWorker(amount, export_to_file, export_to_db, MainFrame.pgrBar);
+        mySwingWorker.execute();
+        /*
         accounts = new ArrayList<>();
         for(int i=0;i<amount;i++){
             accounts.add(createAccount());
-            System.out.println(i+1 + "/"+amount+" accounts crawled");
+            //System.out.println(i+1 + "/"+amount+" accounts crawled");
         }
         if(export_to_file){
             exportToFile(Consts.PATH_URL, false);
@@ -69,6 +129,8 @@ public class Controller {
         if(export_to_db){
             exportToDB(Consts.PATH_URL, false);
         }
+                
+        */
     }
     
     public void exportToDB(String path, boolean all) throws ParseException, ClassNotFoundException, SQLException{
@@ -242,8 +304,8 @@ public class Controller {
         return reader.getPerson(id);
     }
     
-    public void getDBSize() throws ClassNotFoundException, SQLException{
-        System.out.println(Database.getInstance().getDBSize());
+    public int getDBSize() throws ClassNotFoundException, SQLException{
+        return Database.getInstance().getDBSize();
     }
     
     

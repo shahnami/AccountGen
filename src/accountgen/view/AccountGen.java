@@ -6,10 +6,12 @@
 
 package accountgen.view;
 
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.text.ParseException;
+import javax.swing.UIManager;
 
 /**
  *
