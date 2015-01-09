@@ -6,8 +6,6 @@
 
 package accountgen.view;
 
-import accountgen.controller.Controller;
-import accountgen.model.Consts;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
@@ -25,7 +23,11 @@ public class AccountGen {
      * @throws java.io.UnsupportedEncodingException
      */
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, SQLException, ParseException {
-        Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT_TO_FILE, Consts.EXPORT_TO_DB);
+        MainFrame frame = new MainFrame();
+        frame.setTitle("Fake name generator");
+        frame.setVisible(true);
+        frame.pack();
+        //Controller.getInstance().generate(Consts.AMOUNT, Consts.EXPORT_TO_FILE, Consts.EXPORT_TO_DB);
         //Controller.getInstance().printPerson(1);
         //Controller.getInstance().readFile(Consts.PATH_URL);
         //Controller.getInstance().exportToDB(Consts.PATH_URL, true);

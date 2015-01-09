@@ -237,6 +237,11 @@ public class Controller {
         showAccounts();
     }
     
+    public List<Person> readDB(int id) throws SQLException, ClassNotFoundException{
+        reader = new Reader("");
+        return reader.getPerson(id);
+    }
+    
     public void getDBSize() throws ClassNotFoundException, SQLException{
         System.out.println(Database.getInstance().getDBSize());
     }
