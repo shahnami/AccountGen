@@ -53,7 +53,7 @@ public class Controller {
     private Document setConnection(String url){
         Document doc = null;
         try {
-            doc = Jsoup.connect(url).timeout(1000).get();
+            doc = Jsoup.connect(url).timeout(10*1000).get();
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
