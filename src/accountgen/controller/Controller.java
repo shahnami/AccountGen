@@ -173,7 +173,7 @@ public class Controller {
     }
     
     private void setEmail(Document doc, Person p){
-        Element em = doc.select(".email").first();
+        Element em = doc.select(".extra dl dd").get(1);
         p.setEmail(em.text().split(" ")[0]);
     }
     
@@ -196,12 +196,12 @@ public class Controller {
     }
     
     private void setPhone(Document doc, Person p){
-        Element tel = doc.select(".tel").first();
+        Element tel = doc.select(".extra dl dd").get(0);
         p.setPhone(tel.text());
     }
     
     private void setBday(Document doc, Person p){
-        Element bday = doc.select(".bday").first();
+        Element bday = doc.select(".extra dl dd").get(5);
         Date bd = new Date();
 
         Date date = null;
@@ -233,7 +233,7 @@ public class Controller {
     }
     
     private void getListTags(Document doc, Person p){
-        Elements li = doc.select(".extra").select("li:not(.lab)");
+        Elements li = doc.select(".extra dl dd");
         p.setUsername(li.get(2).text());
         p.setPassword(li.get(3).text());
         p.setMmn(li.get(4).text());
@@ -260,7 +260,6 @@ public class Controller {
         p.setHeight(li.get(17).text().split("\\(")[1].split(" ")[0]);
         p.setGuid(li.get(18).text());
     }
-    
     
     private Person createAccount(){
         Document doc = setConnection(Consts.GENERATOR_URL+"?t=country&n[]="+Consts.NAMESET+"&c[]="+Consts.COUNTRY+"&gen="+Consts.GENDER+"&age-min="+Consts.MIN_AGE+"&age-max="+Consts.MAX_AGE); //?t=country&n[]=nl&c[]=bg&gen=67&age-min=19&age-max=64
