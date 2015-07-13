@@ -4,7 +4,7 @@
 
 ## Usage
 
-    -
+    Users of this content are fully responsible for any consequences resulting from their use of the content. The information in this repository is provided for educational or information purposes only; it is not intended to be a substitute for professional advice, whether medical, legal, or otherwise
 
 ## Motivation
 
